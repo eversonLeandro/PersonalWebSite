@@ -13,6 +13,29 @@ const HomeSection = () => (
       <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
     </div>
 
+    {/* Partículas flotantes */}
+    <div className="absolute inset-0 pointer-events-none">
+      {[...Array(25)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-sky-400/20 rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.2, 0.8, 0.2],
+          }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
+        />
+      ))}
+    </div>
+
     <div className="container mx-auto max-w-6xl relative z-10">
       <div className="grid md:grid-cols-2 items-center gap-10">
         

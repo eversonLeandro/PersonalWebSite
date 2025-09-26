@@ -4,7 +4,7 @@ import { Contacto } from './ContactEntity';
 const repository = new ContactRepository();
 
 export const ContactFacade = {
-  // Save a new contact from form data
+  
   guardarContacto: (datosFormulario) => {
     const { nombre, email, telefono, motivo, mensaje, aceptaTerminos, preferenciaContacto } = datosFormulario;
     const nuevoContacto = new Contacto(

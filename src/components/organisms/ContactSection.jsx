@@ -12,7 +12,6 @@ const Contacto = () => {
     aceptaTerminos: false,
     preferenciaContacto: '',
   });
-
   const [validationErrors, setValidationErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
   const [contactos, setContactos] = useState([]);
@@ -74,12 +73,25 @@ const Contacto = () => {
   };
 
   return (
-    <section 
+    <section
       id="contact"
-      className="py-10 bg-gradient-to-b from-slate-900 via-gray-900 to-black text-white"
+      className="relative py-10 bg-gradient-to-b from-slate-900 via-gray-900 to-black text-white overflow-hidden"
       aria-labelledby="contact-title"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Partículas de fondo */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-blue-400/20 rounded-full"
+            style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+            animate={{ y: [0, -10, 0], opacity: [0.1, 0.7, 0.1] }}
+            transition={{ duration: 3 + Math.random() * 2, repeat: Infinity, delay: Math.random() * 3 }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}

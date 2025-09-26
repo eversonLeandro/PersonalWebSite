@@ -1,38 +1,58 @@
 import { Title } from '../atoms';
-import { ProjectItem } from '../molecules'; // Asegúrate de que este es el path correcto
+import { ProjectItem } from '../molecules'; 
 import { motion } from "framer-motion";
 
 const projectsData = [
   {
     name: "Sitio Web Personal",
     description: "Desarrollo de una página web usando React y Tailwind CSS para mostrar mi portafolio y habilidades.",
-    technologies: ["React", "Tailwind","css"],
-    link: "#",
-     // Asegúrate de tener un enlace de demo si lo necesitas
+    technologies: ["React", "Tailwind", "CSS"],
+    link: "https://github.com/eversonLeandro/PersonalWebSite",
   },
   {
     name: "Proyecto miniMarket",
     description: "Sistema para gestionar compras, inventario e informes en un minimarket, optimizando la administración del establecimiento.",
-    technologies: ["C#","winforms"],
-    link: "#",
-
+    technologies: ["C#", "WinForms"],
+    link: "https://github.com/eversonLeandro/Minimarket",
   },
   {
     name: "Gestor de Proyectos Académicos",
     description: "Sistema web que facilita la ejecución de proyectos de software empresariales por parte de estudiantes avanzados.",
-    technologies: ["Oracle", "Spring Boot","Microservices"],
-    link: "#",
-    
+    technologies: ["Oracle", "Spring Boot", "Microservices"],
+    link: "https://github.com/eversonLeandro/MicroServiceSPMFinal",
   },
 ];
 
 const ProjectsSection = () => (
   <section
     id="projects"
-    className="py-10 bg-gradient-to-b from-slate-900 via-gray-900 to-black text-white"
+    className="py-10 bg-gradient-to-b from-slate-900 via-gray-900 to-black text-white relative overflow-hidden"
     aria-labelledby="projects-title"
   >
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Partículas flotantes */}
+    <div className="absolute inset-0 pointer-events-none">
+      {[...Array(25)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-blue-400/20 rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -10, 0],
+            opacity: [0.1, 0.8, 0.1],
+          }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            delay: Math.random() * 3,
+          }}
+        />
+      ))}
+    </div>
+
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -48,6 +68,7 @@ const ProjectsSection = () => (
           Algunos de los proyectos en los que he trabajado.
         </p>
       </motion.div>
+
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projectsData.map((project, index) => (
           <motion.div

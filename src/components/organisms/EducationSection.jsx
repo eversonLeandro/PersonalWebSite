@@ -1,16 +1,46 @@
 import { Title } from "../atoms";
 import { BookOpenIcon } from "@heroicons/react/24/outline";
+import { motion } from "framer-motion";
 
 const EducationSection = () => {
   return (
     <section
       id="education"
-      className="py-20 bg-gradient-to-b from-slate-900 via-gray-900 to-black text-white"
+      className="py-20 bg-gradient-to-b from-slate-900 via-gray-900 to-black text-white relative overflow-hidden"
       aria-labelledby="education-title"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Partículas flotantes */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-cyan-400/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.2, 0.8, 0.2],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Título */}
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
           <Title
             id="education-title"
             text={
@@ -26,10 +56,16 @@ const EducationSection = () => {
           <p className="text-gray-300 mt-3 text-base sm:text-lg md:text-xl max-w-2xl mx-auto">
             Mi trayectoria educativa y formación académica.
           </p>
-        </div>
+        </motion.div>
 
         {/* Tabla */}
-        <div className="overflow-x-auto rounded-2xl shadow-xl border border-gray-800/50 backdrop-blur-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="overflow-x-auto rounded-2xl shadow-xl border border-gray-800/50 backdrop-blur-sm"
+        >
           <table className="min-w-full text-left divide-y divide-gray-700">
             <thead className="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 text-white">
               <tr>
@@ -66,7 +102,7 @@ const EducationSection = () => {
               </tr>
               <tr className="hover:bg-gray-800/20 transition-colors duration-200">
                 <td className="px-4 py-3 text-sm sm:text-base sm:px-6">Universidad del Cauca</td>
-                <td className="px-4 py-3 text-sm sm:text-base sm:px-6">Licenciatura en Ingeniería</td>
+                <td className="px-4 py-3 text-sm sm:text-base sm:px-6">Profesional Universitario</td>
                 <td className="px-4 py-3 text-sm sm:text-base sm:px-6">2022 - act</td>
                 <td className="px-4 py-3 text-sm sm:text-base text-gray-300 sm:px-6">
                   Ingeniería de Sistemas 
@@ -74,7 +110,7 @@ const EducationSection = () => {
               </tr>
             </tbody>
           </table>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
